@@ -1,37 +1,38 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getContent } from "@/services/api";
+import { io } from "socket.io-client";
 
-interface RealTimeRefresherProps {
-  lastUpdated?: string;
-}
+const BACKEND_URL = "https://eminenture-backend.onrender.com";
 
-export default function RealTimeRefresher({ lastUpdated }: RealTimeRefresherProps) {
+export default function RealTimeRefresher() {
   const router = useRouter();
-  const lastUpdatedRef = useRef(lastUpdated);
 
   useEffect(() => {
-    lastUpdatedRef.current = lastUpdated;
-  }, [lastUpdated]);
+    // Connect to backend via Socket.io
+    const socket = io(BACKEND_URL, {
+      transports: ["websocket", "polling"],
+    });
 
-  useEffect(() => {
-    const checkUpdates = async () => {
-      try {
-        const data = await getContent();
-        if (data && data.updatedAt !== lastUpdatedRef.current) {
-          lastUpdatedRef.current = data.updatedAt;
-          router.refresh();
-        }
-      } catch (error) {
-        console.error("Error checking for updates:", error);
-      }
+    socket.on("connect", () => {
+      console.log("Socket connected:", socket.id);
+    });
+
+    // When backend emits 'content-updated', refresh the page data
+    socket.on("content-updated", () => {
+      console.log("Content updated — refreshing...");
+      router.refresh();
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Socket disconnected");
+    });
+
+    // Cleanup on unmount
+    return () => {
+      socket.disconnect();
     };
-
-    const interval = setInterval(checkUpdates, 2000); // Check every 2 seconds
-
-    return () => clearInterval(interval);
   }, [router]);
 
   return null;

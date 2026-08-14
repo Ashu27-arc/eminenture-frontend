@@ -27,7 +27,7 @@ export default async function Home() {
         <Stats stats={stats} />
       </main>
       <Footer />
-      <RealTimeRefresher lastUpdated={content?.updatedAt} />
+      <RealTimeRefresher />
     </div>
   );
 }
