@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// ─── Axios instance ──────────────────────────────────────────────────────────
 const apiClient = axios.create({
   baseURL: "https://eminenture-backend.onrender.com",
   headers: {
@@ -8,7 +7,6 @@ const apiClient = axios.create({
   },
 });
 
-// ─── Types ────────────────────────────────────────────────────────────────────
 export interface Stat {
   _id?: string;
   label: string;
@@ -23,12 +21,6 @@ export interface SiteContent {
   updatedAt?: string;
 }
 
-// ─── API Functions ────────────────────────────────────────────────────────────
-
-/**
- * Fetch the current site content from the backend.
- * Returns null if the request fails.
- */
 export async function getContent(): Promise<SiteContent | null> {
   try {
     const { data } = await apiClient.get<SiteContent>("/api/content");
@@ -39,10 +31,6 @@ export async function getContent(): Promise<SiteContent | null> {
   }
 }
 
-/**
- * Update the site content on the backend.
- * Returns the updated content on success, throws on failure.
- */
 export async function updateContent(
   payload: Omit<SiteContent, "updatedAt">
 ): Promise<SiteContent> {

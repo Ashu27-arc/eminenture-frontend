@@ -13,7 +13,6 @@ export default function Stats({ stats }: StatsProps) {
 
   return (
     <section className="bg-slate-950 py-24 sm:py-32 relative border-t border-slate-900">
-      {/* Visual background details */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none"></div>
       </div>
@@ -34,7 +33,6 @@ export default function Stats({ stats }: StatsProps) {
               key={stat._id || idx} 
               className="group relative flex flex-col justify-between bg-slate-900/30 backdrop-blur-xl border border-slate-900 hover:border-emerald-500/30 p-8 rounded-2xl hover:bg-slate-900/60 transition-all duration-300 shadow-xl"
             >
-              {/* Card top border light-up on hover */}
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
               <div className="space-y-4">

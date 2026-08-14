@@ -35,7 +35,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -59,7 +58,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu, show/hide based on menu state. */}
       <div className={`${isOpen ? "block" : "hidden"} md:hidden bg-slate-950 border-b border-slate-900`} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <Link href="/" onClick={() => setIsOpen(false)} className="text-slate-300 hover:text-emerald-400 block px-3 py-2.5 rounded-md text-base font-semibold transition-colors">Home</Link>

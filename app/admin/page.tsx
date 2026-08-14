@@ -80,7 +80,6 @@ export default function AdminPage() {
       setMessage({ type: "success", text: "Content updated successfully!" });
       setShowPopup(true);
       fetchContent();
-      // Auto-close popup after 3 seconds on success
       setTimeout(() => setShowPopup(false), 3000);
     } catch (error: unknown) {
       const errMsg =
@@ -105,7 +104,6 @@ export default function AdminPage() {
     <div className="flex flex-col min-h-screen bg-slate-950 text-white font-sans">
       <Navbar />
       <main className="flex-grow py-12 px-4 sm:px-6 lg:px-8 relative">
-        {/* Background glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[100px] pointer-events-none z-0"></div>
         
         <div className="max-w-4xl mx-auto bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-800 shadow-2xl overflow-hidden relative z-10">
@@ -114,7 +112,6 @@ export default function AdminPage() {
               Admin Dashboard
             </h1>
             
-            {/* ── Toast Notification (bottom-right) ── */}
             {showPopup && (
               <div
                 className="fixed bottom-6 right-6 z-50 w-full max-w-xs rounded-2xl border shadow-2xl p-5 flex items-start gap-4 animate-[slideInRight_0.3s_ease-out]"
@@ -128,7 +125,6 @@ export default function AdminPage() {
                     : "0 8px 32px rgba(239,68,68,0.15)",
                 }}
               >
-                {/* Icon */}
                 <div
                   className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full mt-0.5"
                   style={{
@@ -148,7 +144,6 @@ export default function AdminPage() {
                   )}
                 </div>
 
-                {/* Text */}
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold text-white">
                     {message.type === "success" ? "Success!" : "Error"}
@@ -160,7 +155,6 @@ export default function AdminPage() {
                   </p>
                 </div>
 
-                {/* Close ✕ */}
                 <button
                   onClick={() => setShowPopup(false)}
                   className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-slate-700/60 transition-all cursor-pointer text-xs"
@@ -173,7 +167,6 @@ export default function AdminPage() {
 
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="space-y-8">
-                {/* Hero Section */}
                 <div className="bg-slate-950/30 p-6 rounded-xl border border-slate-800/80 space-y-6">
                   <h2 className="text-xl font-bold text-white flex items-center gap-2 border-b border-slate-850 pb-3">
                     <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -219,7 +212,6 @@ export default function AdminPage() {
                   </div>
                 </div>
 
-                {/* Statistics Section */}
                 <div className="bg-slate-950/30 p-6 rounded-xl border border-slate-800/80 space-y-6">
                   <div className="flex justify-between items-center border-b border-slate-850 pb-3">
                     <h2 className="text-xl font-bold text-white flex items-center gap-2">

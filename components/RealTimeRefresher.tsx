@@ -10,7 +10,6 @@ export default function RealTimeRefresher() {
   const router = useRouter();
 
   useEffect(() => {
-    // Connect to backend via Socket.io
     const socket = io(BACKEND_URL, {
       transports: ["websocket", "polling"],
     });
@@ -19,7 +18,6 @@ export default function RealTimeRefresher() {
       console.log("Socket connected:", socket.id);
     });
 
-    // When backend emits 'content-updated', refresh the page data
     socket.on("content-updated", () => {
       console.log("Content updated — refreshing...");
       router.refresh();
@@ -29,7 +27,6 @@ export default function RealTimeRefresher() {
       console.log("Socket disconnected");
     });
 
-    // Cleanup on unmount
     return () => {
       socket.disconnect();
     };
