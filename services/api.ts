@@ -2,7 +2,7 @@ import axios from "axios";
 
 // ─── Axios instance ──────────────────────────────────────────────────────────
 const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: "https://eminenture-backend.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
